@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import ListItem from './components/ListItem';
 import Form from './components/Form';
 import serviceCall, { ACTIONS } from './services/apiServices.mjs';
+import axios from 'axios';
 import './App.css';
 
 function App() {
@@ -9,10 +10,15 @@ function App() {
 
   useEffect(() => {
     async function getData() {
-      let data = await serviceCall(ACTIONS.read);
-      setTodos(data);
+      try {
+        let res = await axios.get('http://localhost:3000/api/todos');
+        setTodos(res.data);
+      } catch (err) {
+        console.error(err);
+      }
     }
-    getData();
+    
+    getData()
   }, []);
 
   let list = () =>
