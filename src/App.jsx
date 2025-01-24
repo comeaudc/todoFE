@@ -11,19 +11,26 @@ function App() {
   useEffect(() => {
     async function getData() {
       try {
-        let res = await axios.get('http://localhost:3000/api/todos');
+        let res = await axios.get('https://todobe-sonv.onrender.com/api/todos');
         setTodos(res.data);
       } catch (err) {
         console.error(err);
       }
     }
-    
-    getData()
+
+    getData();
   }, []);
 
   let list = () =>
     todos.map((todo) => {
-      return <ListItem key={todo._id} todo={todo} todos={todos} setTodos={setTodos} />;
+      return (
+        <ListItem
+          key={todo._id}
+          todo={todo}
+          todos={todos}
+          setTodos={setTodos}
+        />
+      );
     });
 
   return (

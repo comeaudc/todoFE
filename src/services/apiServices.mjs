@@ -8,7 +8,7 @@ export const ACTIONS = {
 };
 
 export default async function serviceCall(action, formData, id) {
-  const url = 'http://localhost:3000/api/todos';
+  const url = 'https://todobe-sonv.onrender.com/api/todos';
 
   switch (action) {
     case ACTIONS.create:
@@ -35,7 +35,7 @@ async function getTodos(url) {
 async function createTodo(url, formData) {
   try {
     const res = await axios.post(url, formData);
-    
+
     return res.data;
   } catch (err) {
     console.error(err);
